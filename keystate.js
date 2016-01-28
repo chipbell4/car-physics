@@ -20,7 +20,7 @@ var KeyState = (function() {
       return;
     }
 
-    state.direction = true;
+    state[direction] = true;
   });
 
   document.addEventListener('keyup', function(event) {
@@ -29,7 +29,7 @@ var KeyState = (function() {
       return;
     }
 
-    state.direction = false;
+    state[direction] = false;
   });
 
   return state;
