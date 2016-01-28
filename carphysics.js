@@ -18,7 +18,7 @@ CarPhysics.prototype.rotateVector = function(x, y, radians) {
 
   return [
     cosTheta * x - sinTheta * y,
-    sinTheta * y + cosTheta * x
+    cosTheta * y + sinTheta * x
   ];
 };
 
