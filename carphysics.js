@@ -6,7 +6,7 @@ var CarPhysics = function(options) {
   this.vx = 0;
   this.vy = 0;
   this.dx = 0;
-  this.dy = 0;
+  this.dy = -1;
   this.turnDirection = 0;
 
   this.thrusterOn = false;
