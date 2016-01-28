@@ -43,6 +43,6 @@ CarPhysics.prototype.update = function(dt) {
   }
 
   // apply deceleration from friction
-  this.vx *= Math.pow(0.99, dt);
-  this.vy *= Math.pow(0.99, dt);
+  this.vx *= Math.pow(0.8, dt);
+  this.vy *= Math.pow(0.8, dt);
 };
