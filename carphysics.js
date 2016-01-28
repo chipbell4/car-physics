@@ -29,7 +29,7 @@ CarPhysics.prototype.update = function(dt) {
 
   // if we're turning, apply a turn direction by rotating the D vector
   if(this.turnDirection !== 0) {
-    var rotationAngle = this.turnDirection * 0.1; 
+    var rotationAngle = this.turnDirection * 0.05; 
     var rotated = this.rotateVector(this.dx, this.dy, rotationAngle);
     this.dx = rotated[0];
     this.dy = rotated[1];
@@ -38,8 +38,8 @@ CarPhysics.prototype.update = function(dt) {
   // if the thruster is on, apply acceleration
   // TODO: Remove the constant acceleration factor 10
   if(this.thrusterOn) {
-    this.vx += this.dx * dt * 10;
-    this.vy += this.dy * dt * 10;
+    this.vx += this.dx * dt * 50;
+    this.vy += this.dy * dt * 50;
   }
 
   // apply deceleration from friction
