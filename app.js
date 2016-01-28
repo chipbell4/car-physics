@@ -57,8 +57,8 @@ function animate() {
   carPhysics.update(dt);
 
   // clamp the physics simulation position
-  carPhysics.x = wrap(carPhysics.x, 0, viewWidth);
-  carPhysics.y = wrap(carPhysics.y, 0, viewHeight);
+  carPhysics.x = wrap(carPhysics.x, -10, viewWidth + 10);
+  carPhysics.y = wrap(carPhysics.y, -10, viewHeight + 10);
 
   // update the fake car's position and direction
   graphics.position.x = carPhysics.x;
