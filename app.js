@@ -14,15 +14,26 @@ var stage = new PIXI.Stage(0xFFFFFF);
 // create a new graphics object
 var graphics = new PIXI.Graphics();
 graphics.beginFill(0x00FF00);
-graphics.moveTo(viewWidth * 0.5, viewHeight * 0.5);
-graphics.lineTo(viewWidth * 0.49, viewHeight * 0.53);
-graphics.lineTo(viewWidth * 0.51, viewHeight * 0.53);
+graphics.moveTo(0, 0);
+graphics.lineTo(-viewWidth * 0.01, viewHeight * 0.03);
+graphics.lineTo(viewWidth * 0.01, viewHeight * 0.03);
 graphics.endFill();
 stage.addChild(graphics);
 
+graphics.position.x = viewWidth / 2;
+graphics.position.y = viewHeight / 2;
+
+var carPhysics = new CarPhysics();
+
+var lastFrame = Date.now();
 requestAnimationFrame(animate);
 
 function animate() {
+  var dt = (Date.now() - lastFrame) / 1000;
+  lastFrame = Date.now();
+
+  carPhysics.update(dt);
+
   renderer.render(stage);
   requestAnimationFrame(animate);
 }
