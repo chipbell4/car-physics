@@ -35,7 +35,7 @@ CarPhysics.prototype.update = function(dt) {
 
   // if we're turning, apply a turn direction by rotating the D vector
   if(this.turnDirection !== 0) {
-    var rotationAngle = this.turnDirection * 0.05; 
+    var rotationAngle = this.turnDirection * 0.05;
     var rotated = this.rotateVector(this.dx, this.dy, rotationAngle);
     this.dx = rotated[0];
     this.dy = rotated[1];
