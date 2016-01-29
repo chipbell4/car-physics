@@ -5,7 +5,7 @@ var CarPhysics = function(options) {
   this.options.acceleration = this.options.acceleration || 50;
   this.options.handling = this.options.handling || 1;
   this.options.traction = this.options.traction || 1;
-  this.options.friction = this.options.friction || 0.8;
+  this.options.friction = this.options.friction || 0.2;
 
   this.x = 0;
   this.y = 0;
@@ -49,6 +49,6 @@ CarPhysics.prototype.update = function(dt) {
   }
 
   // apply deceleration from friction
-  this.vx *= Math.pow(this.options.friction, dt);
-  this.vy *= Math.pow(this.options.friction, dt);
+  this.vx *= Math.pow(1 - this.options.friction, dt);
+  this.vy *= Math.pow(1 - this.options.friction, dt);
 };
