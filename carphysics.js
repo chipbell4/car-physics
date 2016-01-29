@@ -1,5 +1,11 @@
 var CarPhysics = function(options) {
-  this.options = options;
+  // provide some defaults
+  this.options = options || {};
+  this.options.top_speed = this.options.top_speed || 100;
+  this.options.acceleration = this.options.acceleration || 50;
+  this.options.handling = this.options.handling || 1;
+  this.options.traction = this.options.traction || 1;
+  this.options.friction = this.options.friction || 0.8;
 
   this.x = 0;
   this.y = 0;
