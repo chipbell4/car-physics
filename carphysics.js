@@ -1,7 +1,7 @@
 var CarPhysics = function(options) {
   // provide some defaults
   this.options = options || {};
-  this.options.top_speed = this.options.top_speed || 100;
+  this.options.top_speed = this.options.top_speed || 200;
   this.options.acceleration = this.options.acceleration || 50;
   this.options.handling = this.options.handling || 1;
   this.options.traction = this.options.traction || 1;
@@ -28,6 +28,10 @@ CarPhysics.prototype.rotateVector = function(x, y, radians) {
   ];
 };
 
+CarPhysics.prototype.magnitude = function(x, y) {
+  return Math.sqrt(x * x + y * y);
+};
+
 CarPhysics.prototype.update = function(dt) {
   // update position based on velocity
   this.x += this.vx * dt;
@@ -42,10 +46,9 @@ CarPhysics.prototype.update = function(dt) {
   }
 
   // if the thruster is on, apply acceleration
-  // TODO: Remove the constant acceleration factor 10
-  if(this.thrusterOn) {
-    this.vx += this.dx * dt * 50;
-    this.vy += this.dy * dt * 50;
+  if(this.thrusterOn && this.magnitude(this.vx, this.vy) < this.options.top_speed) {
+    this.vx += this.dx * dt * this.options.acceleration;
+    this.vy += this.dy * dt * this.options.acceleration;
   }
 
   // apply deceleration from friction
