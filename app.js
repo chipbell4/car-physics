@@ -1,5 +1,6 @@
 var KeyState = require('./keystate.js');
 var CarPhysics = require('./car-physics.js');
+var Ui = require('./ui.js');
 
 var viewWidth = 630;
 var viewHeight = 410;
@@ -68,3 +69,10 @@ function animate() {
   renderer.render(stage);
   requestAnimationFrame(animate);
 }
+
+Ui.addInput({
+  name: 'handling',
+  label: 'Handling',
+  min: 0.1,
+  max: 1.0,
+});
