@@ -1,4 +1,43 @@
 var $ = require('jquery');
+  
+var allOptions = [
+  {
+    name: 'handling',
+    label: 'Handling',
+    min: 1,
+    max: 5,
+    initial: 3,
+  },
+  {
+    name: 'top_speed',
+    label: 'Top Speed',
+    min: 100,
+    max: 500,
+    initial: 400,
+  },
+  {
+    name: 'acceleration',
+    label: 'Acceleration',
+    min: 100,
+    max: 400,
+    initial: 250,
+  },
+  {
+    name: 'traction',
+    label: 'Traction',
+    min: 1,
+    max: 8,
+    initial: 2,
+  },
+  {
+    name: 'friction',
+    label: 'Friction',
+    min: 0,
+    max: 9,
+    initial: 2,
+  },
+];
+
 
 module.exports = {
   inputChanged: function(name, newValue) {
@@ -29,44 +68,6 @@ module.exports = {
   },
 
   build: function() {
-    var allOptions = [
-      {
-        name: 'handling',
-        label: 'Handling',
-        min: 1,
-        max: 5,
-        initial: 3,
-      },
-      {
-        name: 'top_speed',
-        label: 'Top Speed',
-        min: 100,
-        max: 500,
-        initial: 400,
-      },
-      {
-        name: 'acceleration',
-        label: 'Acceleration',
-        min: 100,
-        max: 400,
-        initial: 250,
-      },
-      {
-        name: 'traction',
-        label: 'Traction',
-        min: 1,
-        max: 8,
-        initial: 2,
-      },
-      {
-        name: 'friction',
-        label: 'Friction',
-        min: 0,
-        max: 9,
-        initial: 2,
-      },
-    ];
-
     allOptions.forEach(function(option) {
       this.addInput(option);
     }.bind(this));    
