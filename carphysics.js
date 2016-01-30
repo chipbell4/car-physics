@@ -42,12 +42,8 @@ CarPhysics.prototype.update = function(dt) {
   this.y += this.vy * dt;
 
   this.updateTurn(dt);
-
   this.applyAcceleration(dt);
-
-  // apply deceleration from friction
-  this.vx *= Math.pow(1 - this.options.friction, dt);
-  this.vy *= Math.pow(1 - this.options.friction, dt);
+  this.applyFriction(dt);
 };
 
 CarPhysics.prototype.updateTurn = function(dt) {
@@ -84,4 +80,9 @@ CarPhysics.prototype.applyAcceleration = function(dt) {
 
   this.vx += this.dx * dt * this.options.acceleration;
   this.vy += this.dy * dt * this.options.acceleration;
+};
+
+CarPhysics.prototype.applyFriction = function(dt) {
+  this.vx *= Math.pow(1 - this.options.friction, dt);
+  this.vy *= Math.pow(1 - this.options.friction, dt);
 };
