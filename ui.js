@@ -43,6 +43,9 @@ module.exports = {
     // update the label
     $('span.value.' + name).html(newValue);
 
+    // remove focus from the element so that driving the car doesn't change the input
+    $('.ui-element input').blur();
+
     // if there isn't a callback, go ahead and break out
     if(this.onChangeCallback === undefined) {
       return;
