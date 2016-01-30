@@ -51,7 +51,7 @@ module.exports = {
 
     // build a event object by appending all of the option fields
     var event = allOptions.reduce(function(event, option) {
-      event[option.name] = $('.ui-element.' + option.name + ' input').val();
+      event[option.name] = Number($('.ui-element.' + option.name + ' input').val());
       return event;
     }, {});
 
