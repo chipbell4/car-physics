@@ -15,14 +15,10 @@ document.body.appendChild(renderer.view);
 var stage = new PIXI.Stage(0xFFFFFF);
 
 // create a new graphics object
-var graphics = new PIXI.Graphics();
-graphics.beginFill(0x00FF00);
-graphics.moveTo(0, 0);
-graphics.lineTo(-viewWidth * 0.01, viewHeight * 0.03);
-graphics.lineTo(viewWidth * 0.01, viewHeight * 0.03);
-graphics.endFill();
+var graphics = PIXI.Sprite.fromImage('arrow.png');
+graphics.anchor.x = graphics.anchor.y = 0.5;
 stage.addChild(graphics);
-
+graphics.width = graphics.height = 52;
 graphics.position.x = viewWidth / 2;
 graphics.position.y = viewHeight / 2;
 
@@ -44,6 +40,7 @@ var wrap = function(x, a, b) {
 }
 
 function animate() {
+  graphics.width = graphics.height = 32;
   var dt = (Date.now() - lastFrame) / 1000;
   lastFrame = Date.now();
 
