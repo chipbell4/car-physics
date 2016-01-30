@@ -41,19 +41,7 @@ CarPhysics.prototype.update = function(dt) {
   this.x += this.vx * dt;
   this.y += this.vy * dt;
 
-  // if we're turning, apply a turn direction by rotating the D vector
-  if(this.turnDirection !== 0) {
-    var rotationalVelocity = 0;
-    // base the amount of rotation based on speed. (See the constants above)
-    var currentSpeed = this.magnitude(this.vx, this.vy);
-    if(currentSpeed / this.options.top_speed < CarPhysics.BEST_TURN_SPEED) {
-      rotationalVelocity = (currentSpeed / this.options.top_speed / CarPhysics.BEST_TURN_SPEED) * this.options.handling;
-    }
-
-    var rotated = this.rotateVector(this.dx, this.dy, rotationalVelocity * dt);
-    this.dx = rotated[0];
-    this.dy = rotated[1];
-  }
+  this.updateTurn(dt);
 
   // if the thruster is on, apply acceleration
   if(this.thrusterOn && this.magnitude(this.vx, this.vy) < this.options.top_speed) {
@@ -64,4 +52,25 @@ CarPhysics.prototype.update = function(dt) {
   // apply deceleration from friction
   this.vx *= Math.pow(1 - this.options.friction, dt);
   this.vy *= Math.pow(1 - this.options.friction, dt);
+};
+
+CarPhysics.prototype.updateTurn = function(dt) {
+  if(this.turnDirection == 0) {
+    return;
+  }
+    
+  // if we're turning, apply a turn direction by rotating the D vector
+  var rotationalVelocity = 0;
+  // base the amount of rotation based on speed. (See the constants above)
+  var currentSpeed = this.magnitude(this.vx, this.vy);
+  if(currentSpeed / this.options.top_speed < CarPhysics.BEST_TURN_SPEED) {
+    rotationalVelocity = (currentSpeed / this.options.top_speed / CarPhysics.BEST_TURN_SPEED) * this.options.handling;
+  }
+
+  // set rotation velocity based on turn direction
+  rotationalVelocity *= this.turnDirection;
+
+  var rotated = this.rotateVector(this.dx, this.dy, rotationalVelocity * dt);
+  this.dx = rotated[0];
+  this.dy = rotated[1];
 };
