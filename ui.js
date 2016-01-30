@@ -67,7 +67,7 @@ module.exports = {
       type: 'range',
       min: options.min,
       max: options.max,
-      step: 1,
+      step: 0.01,
       value: options.initial,
     });
 
