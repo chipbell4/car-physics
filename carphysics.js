@@ -19,7 +19,7 @@ var CarPhysics = function(options) {
 };
 
 CarPhysics.BEST_TURN_SPEED = 0.75; // As a fraction of top speed
-CarPhysics.TURN_AT_TOP_SPEED = 0.75 // As a fraction of this.options.handling
+CarPhysics.TURN_AT_TOP_SPEED = 0.75; // As a fraction of this.options.handling
 
 var rotateVector = function(x, y, radians) {
   var cosTheta = Math.cos(radians);
@@ -44,7 +44,7 @@ CarPhysics.prototype.update = function(dt) {
 };
 
 CarPhysics.prototype.updateTurn = function(dt) {
-  if(this.turnDirection == 0) {
+  if(this.turnDirection === 0) {
     return;
   }
     
