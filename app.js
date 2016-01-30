@@ -1,3 +1,6 @@
+var KeyState = require('./keystate.js');
+var CarPhysics = require('./car-physics.js');
+
 var viewWidth = 630;
 var viewHeight = 410;
 

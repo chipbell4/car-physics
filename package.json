@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jshint carphysics.js"
+    "test": "jshint carphysics.js",
+    "start": "browserify app.js > bundled.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "browserify": "^13.0.0",
     "jshint": "^2.9.1",
     "pixi.js": "^3.0.9"
   }

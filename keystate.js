@@ -34,3 +34,5 @@ var KeyState = (function() {
 
   return state;
 })();
+
+module.exports = KeyState;

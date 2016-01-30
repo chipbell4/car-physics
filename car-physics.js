@@ -114,3 +114,5 @@ CarPhysics.prototype.applyTraction = function(dt) {
   this.vx = rotated[0];
   this.vy = rotated[1];
 };
+
+module.exports = CarPhysics;
