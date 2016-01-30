@@ -38,7 +38,7 @@ var wrap = function(x, a, b) {
   }
 
   return x;
-}
+};
 
 function animate() {
   graphics.width = graphics.height = 32;
