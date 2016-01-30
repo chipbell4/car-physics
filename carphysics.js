@@ -21,7 +21,7 @@ var CarPhysics = function(options) {
 CarPhysics.BEST_TURN_SPEED = 0.75; // As a fraction of top speed
 CarPhysics.TURN_AT_TOP_SPEED = 0.75 // As a fraction of this.options.handling
 
-CarPhysics.prototype.rotateVector = function(x, y, radians) {
+var rotateVector = function(x, y, radians) {
   var cosTheta = Math.cos(radians);
   var sinTheta = Math.sin(radians);
 
@@ -31,7 +31,7 @@ CarPhysics.prototype.rotateVector = function(x, y, radians) {
   ];
 };
 
-CarPhysics.prototype.magnitude = function(x, y) {
+var magnitude = function(x, y) {
   return Math.sqrt(x * x + y * y);
 };
 
@@ -53,7 +53,7 @@ CarPhysics.prototype.updateTurn = function(dt) {
   // if we're turning, apply a turn direction by rotating the D vector
   var rotationalVelocity = 0;
   // base the amount of rotation based on speed. (See the constants above)
-  var currentSpeed = this.magnitude(this.vx, this.vy);
+  var currentSpeed = magnitude(this.vx, this.vy);
   if(currentSpeed / this.options.top_speed < CarPhysics.BEST_TURN_SPEED) {
     rotationalVelocity = (currentSpeed / this.options.top_speed / CarPhysics.BEST_TURN_SPEED) * this.options.handling;
   }
@@ -61,7 +61,7 @@ CarPhysics.prototype.updateTurn = function(dt) {
   // set rotation velocity based on turn direction
   rotationalVelocity *= this.turnDirection;
 
-  var rotated = this.rotateVector(this.dx, this.dy, rotationalVelocity * dt);
+  var rotated = rotateVector(this.dx, this.dy, rotationalVelocity * dt);
   this.dx = rotated[0];
   this.dy = rotated[1];
 };
@@ -73,7 +73,7 @@ CarPhysics.prototype.applyAcceleration = function(dt) {
   }
 
   // If we're at the top speed don't accelerate
-  if(this.magnitude(this.vx, this.vy) >= this.options.top_speed) {
+  if(magnitude(this.vx, this.vy) >= this.options.top_speed) {
     return;
   }
 
