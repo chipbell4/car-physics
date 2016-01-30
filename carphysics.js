@@ -43,11 +43,7 @@ CarPhysics.prototype.update = function(dt) {
 
   this.updateTurn(dt);
 
-  // if the thruster is on, apply acceleration
-  if(this.thrusterOn && this.magnitude(this.vx, this.vy) < this.options.top_speed) {
-    this.vx += this.dx * dt * this.options.acceleration;
-    this.vy += this.dy * dt * this.options.acceleration;
-  }
+  this.applyAcceleration(dt);
 
   // apply deceleration from friction
   this.vx *= Math.pow(1 - this.options.friction, dt);
@@ -73,4 +69,19 @@ CarPhysics.prototype.updateTurn = function(dt) {
   var rotated = this.rotateVector(this.dx, this.dy, rotationalVelocity * dt);
   this.dx = rotated[0];
   this.dy = rotated[1];
+};
+
+CarPhysics.prototype.applyAcceleration = function(dt) {
+  // If the thruster is off, break out
+  if(!this.thrusterOn) {
+    return;
+  }
+
+  // If we're at the top speed don't accelerate
+  if(this.magnitude(this.vx, this.vy) >= this.options.top_speed) {
+    return;
+  }
+
+  this.vx += this.dx * dt * this.options.acceleration;
+  this.vy += this.dy * dt * this.options.acceleration;
 };
