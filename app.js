@@ -70,4 +70,6 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-Ui.build();
+Ui.build().onChange(function(event) {
+  console.log(event);
+});

@@ -41,7 +41,21 @@ var allOptions = [
 
 module.exports = {
   inputChanged: function(name, newValue) {
+    // update the label
     $('span.value.' + name).html(newValue);
+
+    // if there isn't a callback, go ahead and break out
+    if(this.onChangeCallback === undefined) {
+      return;
+    }
+
+    // build a event object by appending all of the option fields
+    var event = allOptions.reduce(function(event, option) {
+      event[option.name] = $('.ui-element.' + option.name + ' input').val();
+      return event;
+    }, {});
+
+    this.onChangeCallback(event);
   },
 
   addInput: function(options) {
@@ -71,5 +85,11 @@ module.exports = {
     allOptions.forEach(function(option) {
       this.addInput(option);
     }.bind(this));    
-  }
+
+    return this;
+  },
+
+  onChange: function(callback) {
+    this.onChangeCallback = callback;
+  },
 };
