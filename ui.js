@@ -38,7 +38,6 @@ var allOptions = [
   },
 ];
 
-
 module.exports = {
   inputChanged: function(name, newValue) {
     // update the label
