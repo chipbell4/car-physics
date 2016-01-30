@@ -70,10 +70,4 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-Ui.addInput({
-  name: 'handling',
-  label: 'Handling',
-  min: 0.1,
-  max: 1.0,
-  initial: 0.5,
-});
+Ui.build();

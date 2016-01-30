@@ -6,23 +6,69 @@ module.exports = {
   },
 
   addInput: function(options) {
-    $labelText = $('<span/>').html(options.label);
-    $valueLabel = $('<span/>').addClass('value').addClass(options.name);
-    $input = $('<input/>').val(options.initial).attr({
+    var $labelText = $('<span/>').html(options.label);
+    var $valueLabel = $('<span/>').addClass('value').addClass(options.name);
+    var $input = $('<input/>').attr({
       type: 'range',
       min: options.min,
       max: options.max,
-      step: 0.01
+      step: 1,
+      value: options.initial,
     });
 
-    $container = $('<div/>')
+    return $('<div/>')
       .addClass('ui-element')
+      .addClass(options.name)
       .append($labelText)
       .append($valueLabel)
       .append($input)
       .appendTo(document.body)
-      .on('change', function() {
-        this.inputChanged(options.name, $input.val());
+      .on('change', function(e) {
+        this.inputChanged(options.name, $(e.target).val());
       }.bind(this));
+  },
+
+  build: function() {
+    var allOptions = [
+      {
+        name: 'handling',
+        label: 'Handling',
+        min: 1,
+        max: 5,
+        initial: 3,
+      },
+      {
+        name: 'top_speed',
+        label: 'Top Speed',
+        min: 100,
+        max: 500,
+        initial: 400,
+      },
+      {
+        name: 'acceleration',
+        label: 'Acceleration',
+        min: 100,
+        max: 400,
+        initial: 250,
+      },
+      {
+        name: 'traction',
+        label: 'Traction',
+        min: 1,
+        max: 8,
+        initial: 2,
+      },
+      {
+        name: 'friction',
+        label: 'Friction',
+        min: 0,
+        max: 9,
+        initial: 2,
+      },
+    ];
+
+    allOptions.forEach(function(option) {
+      this.addInput(option);
+    }.bind(this));    
   }
 };
