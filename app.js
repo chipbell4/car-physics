@@ -75,4 +75,5 @@ Ui.addInput({
   label: 'Handling',
   min: 0.1,
   max: 1.0,
+  initial: 0.5,
 });

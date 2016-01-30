@@ -8,7 +8,7 @@ module.exports = {
   addInput: function(options) {
     $labelText = $('<span/>').html(options.label);
     $valueLabel = $('<span/>').addClass('value').addClass(options.name);
-    $input = $('<input/>').attr({
+    $input = $('<input/>').val(options.initial).attr({
       type: 'range',
       min: options.min,
       max: options.max,
