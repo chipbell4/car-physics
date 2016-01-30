@@ -40,6 +40,7 @@ CarPhysics.prototype.update = function(dt) {
   this.updateTurn(dt);
   this.applyAcceleration(dt);
   this.applyFriction(dt);
+  this.applyTraction(dt);
 };
 
 CarPhysics.prototype.updateTurn = function(dt) {
@@ -86,4 +87,30 @@ CarPhysics.prototype.applyAcceleration = function(dt) {
 CarPhysics.prototype.applyFriction = function(dt) {
   this.vx *= Math.pow(1 - this.options.friction, dt);
   this.vy *= Math.pow(1 - this.options.friction, dt);
+};
+
+CarPhysics.prototype.applyTraction = function(dt) {
+  // if the car isn't moving, break out
+  if(magnitude(this.vx, this.vy) < 0.001) {
+    return;
+  }
+
+  // calculate the angle between the direction and velocity vector (using the cross product)
+  var dCrossV = this.dx * this.vy - this.vx * this.dy;
+  var sinTheta = dCrossV / magnitude(this.dx, this.dy) / magnitude(this.vx, this.vy);
+  var theta = Math.asin(sinTheta);
+
+  // traction is an angular velocity that will determine how quickly the velocity vector can realign with direction
+  // (just like tires do).
+  var amountToCorrect = dt * this.options.traction * -Math.sign(theta);
+  
+  // If the amount of correction needed is less that what traction could do, we'll just realign
+  if(Math.abs(theta) < amountToCorrect) {
+    amountToCorrect = -theta; 
+  }
+
+  // now "fix" velocity by rotating it a little
+  var rotated = rotateVector(this.vx, this.vy, amountToCorrect);
+  this.vx = rotated[0];
+  this.vy = rotated[1];
 };
