@@ -32,9 +32,9 @@ var allOptions = [
   {
     name: 'friction',
     label: 'Friction',
-    min: 0,
-    max: 9,
-    initial: 2,
+    min: 0.1,
+    max: 0.9,
+    initial: 0.2,
   },
 ];
 
