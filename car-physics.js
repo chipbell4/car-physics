@@ -44,16 +44,18 @@ CarPhysics.prototype.update = function(dt) {
 };
 
 CarPhysics.prototype.updateTurn = function(dt) {
-  if(this.turnDirection === 0) {
-    return;
-  }
-    
   // if we're turning, apply a turn direction by rotating the D vector
   var rotationalVelocity = 0;
-  // base the amount of rotation based on speed. (See the constants above)
-  var currentSpeed = magnitude(this.vx, this.vy);
-  if(currentSpeed / this.options.top_speed < CarPhysics.BEST_TURN_SPEED) {
-    rotationalVelocity = (currentSpeed / this.options.top_speed / CarPhysics.BEST_TURN_SPEED) * this.options.handling;
+  // base the amount of rotation based on percentage of top speed. (See the constants above)
+  var percentageSpeed = magnitude(this.vx, this.vy) / this.options.top_speed;
+
+  if(percentageSpeed < CarPhysics.BEST_TURN_SPEED) {
+    rotationalVelocity = percentageSpeed / CarPhysics.BEST_TURN_SPEED * this.options.handling;
+  } else {
+    // Handling decreases from full handling to a percentage at top speed.
+    var slope = this.options.handling * (1 - CarPhysics.TURN_AT_TOP_SPEED) / (CarPhysics.BEST_TURN_SPEED - 1);
+    var intercept = this.options.handling - slope * CarPhysics.BEST_TURN_SPEED;
+    rotationalVelocity = intercept + slope * percentageSpeed;
   }
 
   // set rotation velocity based on turn direction
