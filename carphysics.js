@@ -36,10 +36,7 @@ var magnitude = function(x, y) {
 };
 
 CarPhysics.prototype.update = function(dt) {
-  // update position based on velocity
-  this.x += this.vx * dt;
-  this.y += this.vy * dt;
-
+  this.applyVelocity(dt);
   this.updateTurn(dt);
   this.applyAcceleration(dt);
   this.applyFriction(dt);
@@ -64,6 +61,11 @@ CarPhysics.prototype.updateTurn = function(dt) {
   var rotated = rotateVector(this.dx, this.dy, rotationalVelocity * dt);
   this.dx = rotated[0];
   this.dy = rotated[1];
+};
+
+CarPhysics.prototype.applyVelocity = function(dt) {
+  this.x += this.vx * dt;
+  this.y += this.vy * dt;
 };
 
 CarPhysics.prototype.applyAcceleration = function(dt) {
