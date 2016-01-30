@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jshint carphysics.js",
+    "test": "jshint *.js",
     "start": "browserify app.js > bundled.js"
   },
   "keywords": [],
