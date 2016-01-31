@@ -71,5 +71,9 @@ function animate() {
 }
 
 Ui.build().onChange(function(event) {
-  console.log(event);
+  ['top_speed', 'acceleration', 'handling', 'traction', 'friction'].forEach(function(option) {
+    carPhysics.options[option] = event[option];
+    console.log(option + ' = ' + event[option]);
+  });
+
 });
