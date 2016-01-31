@@ -87,6 +87,11 @@ CarPhysics.prototype.applyAcceleration = function(dt) {
 };
 
 CarPhysics.prototype.applyFriction = function(dt) {
+  // Dont apply friction if the thruster is on
+  if(this.thrusterOn) {
+    return;
+  }
+
   this.vx *= Math.pow(1 - this.options.friction, dt);
   this.vy *= Math.pow(1 - this.options.friction, dt);
 };
