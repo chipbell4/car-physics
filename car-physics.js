@@ -122,4 +122,9 @@ CarPhysics.prototype.applyTraction = function(dt) {
   this.vy = rotated[1];
 };
 
-module.exports = CarPhysics;
+if(typeof window !== 'undefined') {
+  window.CarPhysics = CarPhysics;
+}
+if(typeof module !== 'undefined') {
+  module.exports = CarPhysics;
+}
