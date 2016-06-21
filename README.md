@@ -3,7 +3,7 @@ A fun little car physics engine! Here's an example usage:
 ```javascript
 var options = {
   top_speed: 100, // top speed
-  acceleration: 200, // how fast the item accelerates
+  acceleration: 200, // how fast the car accelerates
   handling: 3, // how fast the car can turn
   traction: 1, // how quickly the car stops drifting (tire stickiness)
   friction: 0.5 // the friction of the surface, i.e. how much percentage speed is lost per second
