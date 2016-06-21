@@ -1,3 +1,4 @@
+(function() {
 var CarPhysics = function(options) {
   // provide some defaults
   this.options = options || {};
@@ -128,3 +129,4 @@ if(typeof window !== 'undefined') {
 if(typeof module !== 'undefined') {
   module.exports = CarPhysics;
 }
+})();
