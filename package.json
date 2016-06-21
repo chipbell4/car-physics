@@ -1,20 +1,25 @@
 {
   "name": "car-physics",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A simple car physics engine for node and the browser",
+  "main": "car-physics.js",
   "scripts": {
     "test": "jshint *.js",
     "start": "browserify app.js > bundled.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["car", "physics"],
+  "homepage": "https://github.com/chipbell4/car-physics",
+  "bugs": "https://github.com/chipbell4/car-physics/issues",
+  "author": "chipbell4",
   "license": "ISC",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/chipbell4/car-physics.git"
+  },
   "devDependencies": {
     "browserify": "^13.0.0",
     "jquery": "^2.2.0",
     "jshint": "^2.9.1",
-    "lodash": "^4.1.0",
     "pixi.js": "^3.0.9"
   }
 }
